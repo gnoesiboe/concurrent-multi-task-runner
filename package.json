@@ -7,7 +7,7 @@
         "install": "node ./scripts/execute.js install",
         "build": "node ./scripts/execute.js build",
         "build:watch": "node ./scripts/execute.js build:watch",
-        "prettify": "prettier --write 'src/**/*.{js,json,md}'"
+        "prettify": "prettier --write 'scripts/**/*.{js,json,md}'"
     },
     "keywords": [],
     "author": "",
