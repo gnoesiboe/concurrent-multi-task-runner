@@ -1,8 +1,10 @@
 # Concurrent multi-task runner
 
-Test setup for using `concurrently` to with a configuration, to make it more readable and easier to use. It is used here to setup a project with multiple seperate applications that need to be build, watched etc. at once.
+Test setup for using [`concurrently`](https://www.npmjs.com/package/concurrently) with a JSON configuration, to make it more readable and easier to manage. It is used here to setup a project with multiple seperate applications that need to be build, watched etc. at once for convenience.
 
-Install all assets, including that of child applications:
+## From application root..
+
+Install all assets (including that of child applications):
 
 ```bash
 npm install
