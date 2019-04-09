@@ -11,16 +11,21 @@ function validateSubTasksAreFormattedCorrectly(subTasks) {
         name: Joi.string().required(),
     });
 
-    const collectionSchema = Joi.array().items(subTaskSchema);
+    const subTaskCollectionSchema = Joi.array().items(subTaskSchema);
 
-    const result = Joi.validate(subTasks, collectionSchema);
+    const taskConfigSchema = Joi.object().keys({
+        subTasks: subTaskCollectionSchema.required(),
+        options: Joi.object(), // @see https://www.npmjs.com/package/concurrently#concurrentlycommands-options
+    });
+
+    const result = Joi.validate(subTasks, taskConfigSchema);
 
     if (result.error) {
         throw result.error;
     }
 }
 
-exports.getSubTasksForTask = function(task) {
+exports.getConfigForTask = function(task) {
     const cwd = process.cwd();
     const configPath = `${cwd}/package.json`;
     const configFileExists = fs.existsSync(configPath);
@@ -45,9 +50,9 @@ exports.getSubTasksForTask = function(task) {
         throw new Error(`Missing sub task configuration for '${task}' task`);
     }
 
-    const subTasks = config[task];
+    const taskConfig = config[task];
 
-    validateSubTasksAreFormattedCorrectly(subTasks);
+    validateSubTasksAreFormattedCorrectly(taskConfig);
 
-    return subTasks;
+    return taskConfig;
 };

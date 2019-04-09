@@ -8,20 +8,28 @@ if (!task) {
 
 const configParser = require('./utility/configParser');
 const colorHelper = require('./utility/colorHelper');
-const subTasks = configParser.getSubTasksForTask(task);
+const taskConfig = configParser.getConfigForTask(task);
 
-const commands = subTasks.map(({ workingDirectory, name, command }, index) => {
-    command = workingDirectory
-        ? `cd ${workingDirectory} && ${command}`
-        : command;
+const commands = taskConfig.subTasks.map(
+    ({ workingDirectory, name, command }, index) => {
+        command = workingDirectory
+            ? `cd ${workingDirectory} && ${command}`
+            : command;
 
-    const prefixColor = `${colorHelper.determineColorForIndex(index)}.bold`;
+        const prefixColor = `${colorHelper.determineColorForIndex(index)}.bold`;
 
-    return { command, name, prefixColor };
-});
+        return { command, name, prefixColor };
+    }
+);
+
+// @see https://www.npmjs.com/package/concurrently#concurrentlycommands-options
+const DEFAULT_OPTIONS = {
+    killOthers: ['failure'],
+};
 
 const options = {
-    prefixLength: 20,
+    ...DEFAULT_OPTIONS,
+    ...taskConfig.options,
 };
 
 const concurently = require('concurrently');

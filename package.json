@@ -32,56 +32,65 @@
         ]
     },
     "concurrentMultiTasks": {
-        "install": [
-            {
-                "workingDirectory": "./assets/a",
-                "command": "npm install",
-                "name": "website"
-            },
-            {
-                "workingDirectory": "./assets/b",
-                "command": "npm install",
-                "name": "admin"
-            },
-            {
-                "workingDirectory": "./assets/c",
-                "command": "npm install",
-                "name": "frontend"
+        "install": {
+            "subTasks": [
+                {
+                    "workingDirectory": "./assets/a",
+                    "command": "npm install",
+                    "name": "website"
+                },
+                {
+                    "workingDirectory": "./assets/b",
+                    "command": "npm install",
+                    "name": "admin"
+                },
+                {
+                    "workingDirectory": "./assets/c",
+                    "command": "npm install",
+                    "name": "frontend"
+                }
+            ],
+            "options": {
+                "prefixLength": 20
             }
-        ],
-        "build": [
-            {
-                "workingDirectory": "./assets/a",
-                "command": "npm run build",
-                "name": "website"
-            },
-            {
-                "workingDirectory": "./assets/b",
-                "command": "npm run build",
-                "name": "admin"
-            },
-            {
-                "workingDirectory": "./assets/c",
-                "command": "npm run build",
-                "name": "frontend"
-            }
-        ],
-        "build:watch": [
-            {
-                "workingDirectory": "./assets/a",
-                "command": "npm run build:watch",
-                "name": "website"
-            },
-            {
-                "workingDirectory": "./assets/b",
-                "command": "npm run build:watch",
-                "name": "admin"
-            },
-            {
-                "workingDirectory": "./assets/c",
-                "command": "npm run build:watch",
-                "name": "frontend"
-            }
-        ]
+        },
+        "build": {
+            "subTasks": [
+                {
+                    "workingDirectory": "./assets/a",
+                    "command": "npm run build",
+                    "name": "website"
+                },
+                {
+                    "workingDirectory": "./assets/b",
+                    "command": "npm run build",
+                    "name": "admin"
+                },
+                {
+                    "workingDirectory": "./assets/c",
+                    "command": "npm run build",
+                    "name": "frontend"
+                }
+            ]
+        },
+        "build:watch": {
+            "subTasks": [
+                {
+                    "workingDirectory": "./assets/a",
+                    "command": "npm run build:watch",
+                    "name": "website"
+                },
+                {
+                    "workingDirectory": "./assets/b",
+                    "command": "npm run build:watch",
+                    "name": "admin"
+                },
+                {
+                    "workingDirectory": "./assets/c",
+                    "command": "npm run build:watch",
+                    "name": "frontend"
+                }
+            ]
+        }
     }
 }
